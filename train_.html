@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/plugins/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/plugins/select_areas/jquery.selectareas.css">
+        <link rel="stylesheet" href="css/plugins/materialize/materialize.css">
+        <link rel="stylesheet" href="css/plugins/materialize/mstepper.css">
+        <link rel="stylesheet" href="css/plugins/toastr/toastr.css">
+        <link rel="stylesheet" href="css/helper.css">
+        <link rel="stylesheet" href="css/dinpro.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/colors.css">
+        <link rel="stylesheet" href="css/confirm.css">
+    </head>
+
+    <body>
+        <div class="training-layout training-layout-1">
+            <!-- side nav bar -->
+            <div class="tabs">
+                <div class="initial_view">
+                    <div class="existingTemp initialBorder mr-t-20">
+                        <p>Existing Templates</p>
+                        <select class="forceTemp"></select>
+                    </div>
+                    <div class="skipTemp">
+
+                    </div>
+                    <div class="newTemplate initialBorder">
+                        <button class="waves-effect waves-dark createNewTemplate">Create New</button>
+                    </div>
+                </div>
+                <div class="secondary_view">
+                    <ul>
+                        <li class="train_tab fields pointer" type="field">
+                            <p class="head">Fields</p>
+                            <div class="allFieldResults hidden">
+                                <input type="text" class="searchFields fnt-13" placeholder="Search Fields">
+                                <div class="displayresults">
+                                    <div class="group_main">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="train_tab tables pointer" type="table">
+                            <p class="head">Table</p>
+                            <div class="allTables hidden">
+                            </div>
+                        </li>
+                        <li class="train_tab di_display pointer" type="di">
+                            <p class="head">Document Identifier</p>
+                        </li>
+                        <li class="train_tab keyword pointer" type="keyword">
+                            <p class="head">Keywords</p>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="show_digital">
+                            <p>Show Digital <span title="All other components will be blocked">?</span></p>
+                        </div>
+                        <div class="save_final pointer forSave text-center" clickedtype="save" type="save_final">
+                            <p class="head">Save</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="close_digi_view">
+                    <p>Close Digital View</p>
+                </div>
+            </div>
+            <!-- center Image -->
+            <div class="image-box-view">
+                <div class="content-center showImgs">
+                    <div class="image_box">
+                        <div class="HorZOn pos_rl" id="add_lines">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- footer for buttons -->
+                <div class="displayCropWord"></div>
+            </div>
+            <div class="details-view">
+                <div class="footer-box">
+                    <div class="row btns_for_keys">
+                        <div class="col-sm-12 keywords_display mr-t-10">
+
+                        </div>
+                        <!-- <div class="col-sm-1">
+                            <button class="waves-effect waves-dark next_button nextToDi mr-t-25">Next</button>
+                        </div> -->
+                    </div>
+                    <div class="row btns_for_Di">
+                        <div class="col-sm-11 di_keys_display mr-t-10">
+                            <img src="images/add.svg" alt="" class="add_d_i">
+                            <div class="all_di_groups">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="waves-effect waves-dark next_button nextToKeywords mr-t-25">Next</button>
+                        </div>
+                    </div>
+                    <div class="row btns_for_fields">
+                        <div class="col-sm-6 field_val_display mr-t-10">
+
+                        </div>
+                        <div class="col-sm-2 display_units mr-t-10">
+                            <div class="">
+
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mr-t-30">
+                            <!-- Save -->
+                            <button class="waves-effect waves-dark next_button nextToTable">Next</button>
+                            <!-- <button class="waves-effect waves-dark next_button fieldSaveBtn">Save</button> -->
+                            <button class="waves-effect waves-dark next_button testBtn">Test</button>
+                        </div>
+                    </div>
+                    <div class="row btns_for_test">
+                        <div class="col-sm-9 field_test_results mr-t-10">
+
+                        </div>
+                        <div class="col-sm-3 mr-t-30 text-center">
+                            <!-- Save -->
+                            <button class="waves-effect waves-dark next_button nextToTable">Confirm</button>
+                            <button class="waves-effect waves-dark next_button closeTestView">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="row btns_for_table">
+                        <div class="btns_for_table">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <div class="pos_rl forTableScroll">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 mr-t-20">
+
+                                    <button class="waves-effect waves-dark next_button nextToDi" style="background: #4aabff">Next</button>
+                                    <!-- <button class="waves-effect waves-dark next_button checkForce forSave" clickedtype="save"
+                                onclick="return false;">Save</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="digital-view">
+                <div class="content-center show_digi_imgs">
+                    <div class="buttons">
+                        <p class="text_label">Showing page <span class="digi_current_page"></span> of <span
+                                class="digi_total_pages"></span></p>
+                        <div class="buttons_section">
+                            <button class="digi_back">Prev</button>
+                            <button class="digi_next">Next</button>
+                        </div>
+                    </div>
+                    <div class="imgs_here">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="template_name_modal">
+            <div class="template_content">
+                <div class="header">
+                    <h4>Template Name</h4>
+                </div>
+                <div class="content">
+                    <input type="text" class="template_name_val" list="templates_list"
+                        placeholder="Enter Template Name">
+                    <datalist id="templates_list">
+
+                    </datalist>
+                </div>
+                <div class="footer">
+                    <button type="button" class="waves-effect waves-dark btn  closeTempModal">Cancel</button>
+                    <button type="button" class="waves-effect waves-dark btn green saveBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- All script tags -->
+        <script src="js/plugins/jquery/jquery.min.js" charset="utf-8"></script>
+        <script src="js/plugins/jquery/jquery-ui.min.js" charset="utf-8"></script>
+        <script src="js/plugins/jquery/moment.min.js" charset="utf-8"></script>
+        <script src="js/plugins/bootstrap/bootstrap.min.js" charset="utf-8"></script>
+        <script src="js/plugins/materialize/materialize.js" charset="utf-8"></script>
+        <script src="js/plugins/materialize/mstepper.js" charset="utf-8"></script>
+        <script src="js/plugins/pdf/pdf.min.js" charset="utf-8"></script>
+        <script src="js/plugins/tiff/tiff.min.js" charset="utf-8"></script>
+        <script src="js/plugins/select_areas/jquery.selectareas.js" charset="utf-8"></script>
+        <script src="js/plugins/materialize/materialize.js" charset="utf-8"></script>
+        <script src="js/plugins/materialize/mstepper.js" charset="utf-8"></script>
+        <script src="js/common.js" charset="utf-8"></script>
+        <script src="js/plugins/toastr/toastr.min.js" charset="utf-8"></script>
+        <script src="js/json.json"></script>
+        <script src="js/main.js" charset="utf-8"></script>
+        <script src="js/confirm.js"></script>
+        <script src="js/linejs/line.js"></script>
+
+        <div class="loadmask">
+            <div class="loadmask-msg">
+                <!-- <div class="triangleLoading"></div> -->
+                <div class="loadingio-spinner-rolling-hcqarkd3syn">
+                    <div class="ldio-m3t65y1yv8">
+                        <div></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+
+    <style type="text/css">
+        .loadmask .loadmask-msg {
+            top: 26% !important
+        }
+
+        @keyframes ldio-m3t65y1yv8 {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .ldio-m3t65y1yv8 div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #4AABFF;
+            border-top-color: transparent;
+            border-radius: 50%;
+        }
+
+        .ldio-m3t65y1yv8 div {
+            animation: ldio-m3t65y1yv8 1s linear infinite;
+            top: 100px;
+            left: 100px
+        }
+
+        .loadingio-spinner-rolling-hcqarkd3syn {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .ldio-m3t65y1yv8 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform: translateZ(0) scale(1);
+            backface-visibility: hidden;
+            transform-origin: 0 0;
+            /* see note above */
+        }
+
+        .ldio-m3t65y1yv8 div {
+            box-sizing: content-box;
+        }
+
+        /* generated by https://loading.io/ */
+    </style>
+    <!-- #0dc5c1; -->
+
+</html>

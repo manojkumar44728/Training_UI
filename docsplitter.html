@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+        <link href="css/material_icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" id="bt-theme">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/plugins/select_areas/jquery.selectareas.css">
+        <link rel="stylesheet" href="css/plugins/materialize/materialize.css">
+        <link rel="stylesheet" href="css/plugins/materialize/mstepper.css">
+        <link rel="stylesheet" href="css/plugins/toastr/toastr.css">
+        <link rel="stylesheet" href="css/helper.css">
+        <link rel="stylesheet" href="css/dinpro.css">
+        <!-- <link rel="stylesheet" href="css/main.css"> -->
+        <link rel="stylesheet" href="css/colors.css">
+        <link rel="stylesheet" href="css/confirm.css">
+        <link rel="stylesheet" href="css/docsplitter.css">
+
+        
+        
+        <!-- rule builder links starts -->
+            <link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.css">
+            <link rel="stylesheet" href="node_modules/chosenjs/chosen.css">
+            <link rel="stylesheet" href="node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css">
+            <link rel="stylesheet" href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.css">
+            <link rel="stylesheet" href="node_modules/selectize/dist/css/selectize.bootstrap3.css">
+
+            <link rel="stylesheet" href="rule_builder/query-builder.default.css" id="qb-theme">
+            
+            
+           
+        <!-- rule builder links ends -->
+        
+    </head>
+
+    <body>
+        <!-- <div class="main_header">
+            <img src="images/more.png" alt="">
+            <img class="icon" src="images/acepoc3.png" alt="" >
+            <div class="sub-logo">
+            </div>
+        </div> -->
+        <div class="training-layout">
+            
+
+            <div class="template_name_modal">
+                <div class="template_content">
+                    <div class="header">
+                        <h4>Template Name</h4>
+                    </div>
+                    <div class="content">
+                        <input type="text" class="template_name_val" list="templates_list"
+                            placeholder="Enter Template Name">
+                        <datalist id="templates_list">
+                        </datalist>
+                    </div>
+                    <div class="footer">
+                        <button type="button" class="waves-effect waves-dark btn closeTempModal">Cancel</button>
+                        <button type="button" class="waves-effect waves-dark btn green saveBtn">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <div class="show_tabs">
+                <a href="index.html" class="proceed">Proceed</a>
+                  <input type ="file" style="display:none" value ="Upload" class="file_upload fileUpload">
+                  <button class="Upload">Upload</button>
+                  <ul class="tabs">
+                  </ul>
+                  <div class="container">
+                    
+                  </div>
+              </div>
+
+              <div class="panel-wrap">
+                <div class="panel">
+                 <h4>Properties</h4>
+                 <img src="images/close_page.png" class="close_btn" />
+                 <!-- <form> -->
+                    <div class="column">
+                       <label for="your_name">Your Name</label>
+                      <input type="text" id="your_name" name="yourname"/>
+                      <label for="crusttype">Choose Template Type</label>
+                      <select id="crusttype" name="crust">
+                      <option value="Invoice">Invoice</option>
+                        <option  value="Cheque">Cheque</option>
+                        <option  value="Tax Doc">Tax Doc</option>
+                        <option  value="PAN">PAN</option>
+                      </select>
+                       <label>
+                      <input type="checkbox" id="mandatory" name="extracrispy" />
+                      Mandatory   
+                      </label>
+                      <label>
+                      <input type="checkbox" id="crop" name="extracrispy" />
+                      Crop   
+                      </label>
+                        <label>Page Orientation:</label>
+                      <label>
+                      <input type="radio"  name="cheese" value="less" />
+                       portrait
+                      </label>
+                      <label>
+                      <input type="radio" name="cheese" value="extra"/>
+                        Landscape
+                      </label>
+                      <label>
+                      <input type="radio" name="cheese" value="none" />
+                        Square
+                      </label>
+                      <label>Document Identifier</label>
+                      <div class="document_"></div>
+                      <fieldset>
+                      <button type="submit" class="prop_save">save</button>
+                    </div>
+                  <!-- </form> -->
+                </div>
+              </div>
+
+
+              <select class="grouped_dropdown gp_sub">
+                
+            </select>
+
+             
+
+              
+                 
+        </div>
+
+       
+        
+        <!-- All script tags -->
+        <script src="js/plugins/jquery/jquery.min.js" charset="utf-8"></script>
+        <script src="js/plugins/jquery/jquery-ui.min.js" charset="utf-8"></script>
+        <script src="js/plugins/jquery/moment.min.js" charset="utf-8"></script>
+        <!-- <script src="js/plugins/bootstrap/bootstrap.min.js" charset="utf-8"></script> -->
+         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="js/plugins/materialize/materialize.js" charset="utf-8"></script>
+        <script src="js/plugins/materialize/mstepper.js" charset="utf-8"></script>
+        <script src="js/plugins/pdf/pdf.min.js" charset="utf-8"></script>
+        <script src="js/plugins/tiff/tiff.min.js" charset="utf-8"></script>
+        <script src="js/plugins/select_areas/jquery.selectareas.js" charset="utf-8"></script>
+        <script src="js/common.js" charset="utf-8"></script>
+        <script src="js/plugins/toastr/toastr.min.js" charset="utf-8"></script>
+        <script src="js/json.js"></script>
+        
+        <script src="js/confirm.js"></script>
+        <script src="js/linejs/line.js"></script>
+        
+        <!-- rule builder links starts -->
+
+         <script src="node_modules/bootstrap-select/dist/js/bootstrap-select.js"></script>
+         <script src="node_modules/chosenjs/chosen.jquery.js"></script>
+         <script src="node_modules/bootbox/bootbox.js"></script>
+         <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.js"></script>
+         <script src="node_modules/selectize/dist/js/standalone/selectize.js"></script>
+         <script src="node_modules/jquery-extendext/jquery-extendext.js"></script>
+         <script src="node_modules/sql-parser-mistic/browser/sql-parser.js"></script>
+         <script src="node_modules/dot/doT.js"></script>
+         <script src="node_modules/interactjs/dist/interact.js"></script>
+
+         <script src="rule_builder/src/main.js"></script>
+         <script src="rule_builder/src/defaults.js"></script>
+         <script src="rule_builder/src/plugins.js"></script>
+         <script src="rule_builder/src/core.js"></script>
+         <script src="rule_builder/src/public.js"></script>
+         <script src="rule_builder/src/data.js"></script>
+         <script src="rule_builder/src/template.js"></script>
+         <script src="rule_builder/src/utils.js"></script>
+         <script src="rule_builder/src/model.js"></script>
+         <script src="rule_builder/src/jquery.js"></script>
+         <script src="rule_builder/src/plugins/bt-checkbox/plugin.js"></script>
+         <script src="rule_builder/src/plugins/bt-selectpicker/plugin.js"></script>
+         <script src="rule_builder/src/plugins/bt-tooltip-errors/plugin.js"></script>
+         <script src="rule_builder/src/plugins/change-filters/plugin.js"></script>
+         <script src="rule_builder/src/plugins/chosen-selectpicker/plugin.js"></script>
+         <script src="rule_builder/src/plugins/filter-description/plugin.js"></script>
+         <script src="rule_builder/src/plugins/invert/plugin.js"></script>
+         <script src="rule_builder/src/plugins/mongodb-support/plugin.js"></script>
+         <script src="rule_builder/src/plugins/not-group/plugin.js"></script>
+         <script src="rule_builder/src/plugins/sortable/plugin.js"></script>
+         <script src="rule_builder/src/plugins/sql-support/plugin.js"></script>
+         <script src="rule_builder/src/plugins/unique-filter/plugin.js"></script>
+         <script src="rule_builder/query-builder.en.js"></script>
+
+        <!-- rule builder links ends -->
+
+        <script src="js/resp.js"></script>
+        
+        <!-- <script src="js/main.js" charset="utf-8"></script> -->
+        <script src="js/docsplitter.js" charset="utf-8"></script>
+
+
+        <div class="loadmask">
+            <div class="loadmask-msg">
+                <div class="loadingio-spinner-rolling-hcqarkd3syn">
+                    <div class="ldio-m3t65y1yv8">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- <div class="notify_message">
+            <div class="tn-box tn-box-color-1 tn-box-active">
+                <p>Your settings have been saved successfully!</p>
+                <div class="tn-progress"></div>
+            </div>
+        </div> -->
+    </body>
+
+    <style type="text/css">
+        .loadmask .loadmask-msg {
+            top: 26% !important
+        }
+
+        @keyframes ldio-m3t65y1yv8 {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .ldio-m3t65y1yv8 div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #4AABFF;
+            border-top-color: transparent;
+            border-radius: 50%;
+        }
+
+        .ldio-m3t65y1yv8 div {
+            animation: ldio-m3t65y1yv8 1s linear infinite;
+            top: 100px;
+            left: 100px
+        }
+
+        .loadingio-spinner-rolling-hcqarkd3syn {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .ldio-m3t65y1yv8 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform: translateZ(0) scale(1);
+            backface-visibility: hidden;
+            transform-origin: 0 0;
+            /* see note above */
+        }
+
+        .ldio-m3t65y1yv8 div {
+            box-sizing: content-box;
+        }
+
+        /* generated by https://loading.io/ */
+    </style>
+    <!-- #0dc5c1; -->
+
+</html>
