@@ -434,6 +434,7 @@ $(document).ready(function () {
          updateProps()
       })
 
+console.log()
       
 
     
