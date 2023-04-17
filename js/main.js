@@ -1,4 +1,35 @@
 $(document).ready(function () {
+    let grouped_list = localStorage.getItem("Grouped_Info")
+    grouped_dropdown = JSON.parse(grouped_list)
+    let sel_dp = localStorage.getItem("selected_Item")
+    if(grouped_list){
+        get_dropdown(grouped_dropdown)
+    }
+    function get_dropdown(list){
+        let grouped_dropdown = list
+        let gd = ''
+        for (let i = 0; i < grouped_dropdown.length; i++) {
+           const element = grouped_dropdown[i];
+           for (const key in grouped_dropdown[i]) {
+              gd += '<optgroup label="' + key + '" class="bg_doc">'
+              for (let j = 0; j < grouped_dropdown[i][key].length; j++) {
+                 var sel = ''
+                 if (sel_dp == grouped_dropdown[i][key][j].SplittedScreenName) {
+                    sel = 'selected'
+                 }
+                 storeCoords = grouped_dropdown[i][key][j].SplittedScreenName
+                 gd += '<option ' + sel + '  value = ' + grouped_dropdown[i][key][j].SplittedScreenName + '>' + grouped_dropdown[i][key][j].SplittedScreenName + '</option>'
+              }
+              gd += '</optgroup>'
+           }
+        }
+        $(".gp_sub").empty()
+        $(".gp_sub").append(gd)
+    }
+
+
+
+    console.log(grouped_dropdown)
     clicked_table_name = ''
     var table_unique_data = [{
         unique_name: "table1",
@@ -85,48 +116,59 @@ $(document).ready(function () {
     var areaCount = 1;
     var attr_field_data_obj = {}
 
+    $("body").on("change", ".gp_sub", function (event) {
+        var opt = $(this).find(':selected');
+        sel_dp = opt.text();
+        pageload()
+    })
+
     showBtns('')
-    if (nullCheck(case_id)) {
-        sendObj = {};
-        var settings11 = {}
-        loading(true);
-        if (retrain) {
-            retrain_this(template_name_retrain, true)
-        } else {
-            sendObj.file_name = file_id;
-            sendObj.case_id = case_id;
-            sendObj.retrain = retrain;
-            sendObj.tenant_id = tenant_id
+    pageload()
+    function pageload(){
+
+        if (nullCheck(case_id)) {
+            sendObj = {};
+            var settings11 = {}
+            loading(true);
             if (retrain) {
-                sendObj.template_name = template_name_retrain.replace(/%20/g, " ");
-            }
-            settings11 = {
-                "async": true,
-                "crossDomain": true,
-                "url": dynamicUrl + "/get_ocr_data_training",
-                "method": "POST",
-                "processData": false,
-                "contentType": "application/json",
-                "data": JSON.stringify(sendObj)
-            };
-            // msg = response_data;
-            // console.log(response_data);
-            $.ajax(settings11).done(function (msg) 
-		    {
-			    msg = JSON.parse(msg)
-                if (msg.flag) {
-                    initial_shows(msg, true)
-                } else if ($.type(msg) == 'string') {
+                retrain_this(template_name_retrain, true)
+            } else {
+                sendObj.file_name = file_id;
+                sendObj.case_id = case_id;
+                sendObj.retrain = retrain;
+                sendObj.tenant_id = tenant_id
+                sendObj.SplittedScreenName = sel_dp
+                if (retrain) {
+                    sendObj.template_name = template_name_retrain.replace(/%20/g, " ");
+                }
+                settings11 = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": dynamicUrl + "/get_ocr_data_training",
+                    "method": "POST",
+                    "processData": false,
+                    "contentType": "application/json",
+                    "data": JSON.stringify(sendObj)
+                };
+                // msg = response_data;
+                // console.log(response_data);
+                $.ajax(settings11).done(function (msg) 
+                {
+                    msg = JSON.parse(msg)
+                    if (msg.flag) {
+                        initial_shows(msg, true)
+                    } else if ($.type(msg) == 'string') {
+                        $.alert('Something went wrong', 'Alert');
+                        loading(false);
+                    } else {
+                        loading(false);
+                        $.alert(msg.message, 'Alert');
+                    }
+                }).fail(function () {
                     $.alert('Something went wrong', 'Alert');
                     loading(false);
-                } else {
-                    loading(false);
-                    $.alert(msg.message, 'Alert');
-                }
-            }).fail(function () {
-                $.alert('Something went wrong', 'Alert');
-                loading(false);
-            })
+                })
+            }
         }
     }
 
