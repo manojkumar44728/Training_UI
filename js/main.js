@@ -137,7 +137,7 @@ $(document).ready(function () {
                 sendObj.case_id = case_id;
                 sendObj.retrain = retrain;
                 sendObj.tenant_id = tenant_id
-                sendObj.SplittedScreenName = sel_dp
+               
                 if (retrain) {
                     sendObj.template_name = template_name_retrain.replace(/%20/g, " ");
                 }
@@ -3172,6 +3172,12 @@ $(document).ready(function () {
         obj.force_check = 'yes';
         obj.template_name = template_name_retrain;
         obj.tenant_id = tenant_id
+        if(sel_dp == "s1"){
+            obj.file_type = "cheque"
+        }
+        else{
+            obj.file_type = "invoice"
+        }
         var settings11 = {
             "async": true,
             "crossDomain": true,
