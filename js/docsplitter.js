@@ -133,7 +133,7 @@ $(document).ready(function () {
          html_content += ' </div>'
          html_content += '  <div class="vl">'
          html_content += '  </div>'
-         html_content += '   <div class="showSmallDoc"><div class="small_img"></div>'
+         html_content += '   <div class="showSmallDoc"><div class="small_img small_img'+index+'"></div>'
          html_content += '  </div>'
          html_content += '   </div>'
          
@@ -399,25 +399,40 @@ $(document).ready(function () {
       $(".gp_sub").show()
       $(".small_img").html('')
       let getindex= $(".tabs li a.active").attr("index")
-      let url = $('.showpdf'+ getindex+' img').attr('src')
+
+      //single page
       var img =  $('.showpdf'+ getindex+' img')
+      if(img.length == 1){
       var width = img[0].clientWidth;
+      let url = $('.showpdf'+ getindex+' img').attr('src')
       let top = $('.showpdf'+ getindex+' .horizontal_line1').offset().top - $('.showpdf'+ getindex+' .horizontal_line0').offset().top
       console.log($('.showpdf'+ getindex+' .horizontal_line1').offset().top, $('.showpdf'+ getindex+' .horizontal_line0').offset().top)
-      // console.log($(".horizontal_line0").offset().top - top)
-      var left;
-      var top_;
-      left += img[0].offsetLeft - img[0].scrollLeft;
-      top_ += img[0].offsetTop - img[0].scrollTop
-      // var image_size = $(".horizontal_line0").offset().top
-      $(".small_img").css('background-size', width)
       $(".small_img").css("height", top)
       $(".small_img").css("width", width)
       $(".small_img").css("background-image", 'url("' + url + '")')
-      $(".small_img").css("background-size", width)
+      $(".small_img").css('background-size', width)
       let line0_top = $('.showpdf'+ getindex+' .horizontal_line0')[0].style.top
       let con_top = parseInt(line0_top)
       $(".small_img").css("background-position-y", -con_top)
+      }
+      else{
+         let cal_no_images = $('.showpdf'+ getindex+' img')
+         let store_blobs = []
+         for (let cal_i = 0; cal_i < cal_no_images.length; cal_i++) {
+            let url = $('.showpdf'+ getindex+' #imageCountNum'+cal_i+'').attr('src')
+            store_blobs.push(url)
+         }
+         for (let cal_j = 0; cal_j < store_blobs.length; cal_j++) {
+            let a = ''
+            a+='<div class="stored_blob_elements stored_blob_elements'+cal_j+'"></div>'
+            $(".small_img"+getindex).append(a)
+            $('.small_img'+getindex+' .stored_blob_elements'+cal_j+'').css("background-image", 'url("'+store_blobs[cal_j]+'")')
+         }
+         $('.small_img'+getindex+' .stored_blob_elements').css('background-size', width)
+         $('.small_img'+getindex+' .stored_blob_elements').css("height", image_height)
+         $('.small_img'+getindex+' .stored_blob_elements').css("width", width)
+         $('.small_img'+getindex+' .stored_blob_elements').css("background-size", width)
+      }
       $(".small_img").append(' <img src="images/arrow-right.png"  class="open_panel" />')
       sendObj = {}
       sendObj.FileName = file_id;
@@ -544,7 +559,6 @@ $(document).ready(function () {
 
    $("body").on("click", ".prop_save", function () {
       loading(true);
-      let displayName = $("#your_name").val()
       let templateType = $("#crusttype").val()
       let mandatory = $("#mandatory").prop("checked")
       let PO = $('input[name="pg"]:checked').val();
@@ -552,7 +566,6 @@ $(document).ready(function () {
       sendObj = {}
       sendObj.fileName = file_id;
       sendObj.SPlittedName=  $(".template_name_val").val()
-      sendObj.templateName = displayName;
       sendObj.case_id = case_id;
       sendObj.tenant_id = tenant_id;
       sendObj.templateType = templateType;
@@ -636,7 +649,8 @@ $(document).ready(function () {
 
    $("body").on("dblclick", ".imageCount", function (event) {
 
-
+      // let count = 0
+      // let caltop = event.currentTarget.offsetTop
       var img = document.getElementsByClassName('imageCount');
       var width = img[0].clientWidth;
       var height = img[0].clientHeight;
