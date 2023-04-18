@@ -490,6 +490,7 @@ $(document).ready(function () {
       sendObj = {}
       sendObj.case_id = case_id;
       sendObj.tenant_id = tenant_id;
+      sendObj.fileName = file_id;
       settings11 = {
          "async": true,
          "crossDomain": true,
