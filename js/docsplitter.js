@@ -127,7 +127,7 @@ $(document).ready(function () {
          // file_name = 'pdf/' + data[index].fileName + ''
          // findindex = index
          html_content += ' <div class="viewPdf">'
-         html_content += ' <div class="showpdf showpdf' + index + '">'
+         html_content += ' <div id="showpdf' + index + '" class="showpdf showpdf' + index + '">'
          html_content += '</div>'
          html_content += ' </div>'
          html_content += ' </div>'
@@ -416,6 +416,9 @@ $(document).ready(function () {
       $(".small_img").css("background-position-y", -con_top)
       }
       else{
+         var width = img[0].clientWidth;
+         let url = $('.showpdf'+ getindex+' img').attr('src')
+         let top = $('.showpdf'+ getindex+' .horizontal_line1').offset().top - $('.showpdf'+ getindex+' .horizontal_line0').offset().top
          let cal_no_images = $('.showpdf'+ getindex+' img')
          let store_blobs = []
          for (let cal_i = 0; cal_i < cal_no_images.length; cal_i++) {
@@ -424,14 +427,18 @@ $(document).ready(function () {
          }
          for (let cal_j = 0; cal_j < store_blobs.length; cal_j++) {
             let a = ''
-            a+='<div class="stored_blob_elements stored_blob_elements'+cal_j+'"></div>'
+            a+='<img src='+store_blobs[cal_j]+'  class="stored_blob_elements stored_blob_elements'+cal_j+'">'
             $(".small_img"+getindex).append(a)
-            $('.small_img'+getindex+' .stored_blob_elements'+cal_j+'').css("background-image", 'url("'+store_blobs[cal_j]+'")')
+            
+
+            // $('.small_img'+getindex+' .stored_blob_elements'+cal_j+'').css("background-image", 'url("'+store_blobs[cal_j]+'")')
          }
-         $('.small_img'+getindex+' .stored_blob_elements').css('background-size', width)
-         $('.small_img'+getindex+' .stored_blob_elements').css("height", image_height)
+         $(".small_img"+getindex).css("height", top)
          $('.small_img'+getindex+' .stored_blob_elements').css("width", width)
-         $('.small_img'+getindex+' .stored_blob_elements').css("background-size", width)
+         // $('.small_img'+getindex+' .stored_blob_elements').css('background-size', width)
+         // $('.small_img'+getindex+' .stored_blob_elements').css("height", image_height)
+         // $('.small_img'+getindex+' .stored_blob_elements').css("width", width)
+         // $('.small_img'+getindex+' .stored_blob_elements').css("background-size", width)
       }
       $(".small_img").append(' <img src="images/arrow-right.png"  class="open_panel" />')
       sendObj = {}
@@ -456,7 +463,7 @@ $(document).ready(function () {
          loading(false)
       msg = JSON.parse(msg)
       if (msg.flag) {
-         $(".horizontal_line").remove()
+         // $(".horizontal_line").remove()
          $(".template_name_val").val("");
          let grouped_dropdown = msg.data
          storedInfo = msg.data
@@ -595,13 +602,14 @@ $(document).ready(function () {
    })
 
    function updateProps(data) {
-      console.log(data)
-      //console.log($(".gp_sub").val())
-      $("#your_name").val(data.templateName)
-      $("#crusttype").val(data.templateType)
-      $("#mandatory").prop("checked", data.Mandatory)
-      $('input[name="pg"][value="'+data.PageOrientation+'"]').attr('checked', true);
-      $("#crop").prop("checked", data.Crop)
+      if(data){
+         console.log(data)
+         $("#your_name").val(data.templateName)
+         $("#crusttype").val(data.templateType)
+         $("#mandatory").prop("checked", data.Mandatory)
+         $('input[name="pg"][value="'+data.PageOrientation+'"]').attr('checked', true);
+         $("#crop").prop("checked", data.Crop)
+      }
    }
 
 
@@ -647,11 +655,30 @@ $(document).ready(function () {
    })
 
 
+   let dblclick_count  = 0
    $("body").on("dblclick", ".imageCount", function (event) {
-
-      // let count = 0
-      // let caltop = event.currentTarget.offsetTop
-      var img = document.getElementsByClassName('imageCount');
+      let text = ["begin" ,"end"]
+      let caltop = 0
+      let index_1 = $(".tabs li a.active").attr("index")
+      let img =  $('.showpdf'+index_1+' #'+event.target.id+'')
+      // var img = parent_class.document.getElementById(event.target.id);
+      let images_displayed_count = $('.showpdf'+index_1+' img').length
+      if(images_displayed_count == 1){
+         caltop = event.offsetY
+      }
+      else{
+         let parsed_count = parseInt(event.currentTarget.alt)
+         if(parsed_count > 0){
+            for (let i = 0; i <= parsed_count; i++) {
+                 caltop += $('.showpdf'+index_1+' img')[i].offsetTop
+            } 
+            caltop = caltop + event.offsetY
+         }
+         else{
+            caltop = event.offsetY
+         }
+         
+      }
       var width = img[0].clientWidth;
       var height = img[0].clientHeight;
       var top = img[0].offsetTop
@@ -664,95 +691,37 @@ $(document).ready(function () {
       infoElement.style.top = y + "px";
       infoElement.style.left = (x + 20) + "px";
 
-      let hors = [{
+      let hors = {
          "color": "blue",
          "height": 15,
          "page": 0,
          "width": width,
          "x": x,
-         "top": y,
-         "text":"begin"
-      }, {
-         "color": "blue",
-         "height": 15,
-         "page": 0,
-         "width": width,
-         "x": x,
-         "top": y + 60,
-         "text":"end"
+         "top": caltop,
+         "text":text[dblclick_count]
+      }
+      // , {
+      //    "color": "blue",
+      //    "height": 15,
+      //    "page": 0,
+      //    "width": width,
+      //    "x": x,
+      //    "top": y + 60,
+      //    "text":"end"
 
 
-      }]
+      // }]
       $(".save_screen").show()
 
-      for (var i = 0; i < hors.length; i++) {
-         drawHorLines(hors[i], i)
-      }
-
-
-
-
-
-
-      // let x = event.clientX;
-      // let y = event.clientY;
-      // let _position = `X: ${x}<br>Y: ${y}`;
-
-      // const infoElement = document.getElementById('info');
-      // infoElement.innerHTML = _position;
-      // infoElement.style.top = y + "px";
-      // infoElement.style.left = (x + 20) + "px";
-
-      // $('#divIntro')
-      // .show()
-      // .append('<div class="header_crop table_crop hor_gen_ver horizontal_line drawThis horizontal_line" ><div class="hor_line" style="background:blue;"><img src="images/arrow.svg" alt="" class="left_move" width="15px"><img src="images/arrow.svg" alt="" class="right_move" width="15px"></div><div class="header_crop table_crop hor_gen_ver  drawThis horizontal_line2" ><div class="hor_line" style="background:blue;"><img src="images/arrow.svg" alt="" class="left_move" width="15px"><img src="images/arrow.svg" alt="" class="right_move" width="15px"></div>')
-      // $(".horizontal_line").css({ position: 'absolute', color: '#000',left:0, top: e.pageY ,width:'400px'});
-      // $(".horizontal_line2").css({ position: 'absolute', color: '#000',left:0, top: e.pageY+30 ,width:'400px'});
-
-      // $(this).append('<div class="header_crop table_crop hor_gen_ver horizontal_line drawThis horizontal_line" ><div class="hor_line" style="background:blue;"><img src="images/arrow.svg" alt="" class="left_move" width="15px"><img src="images/arrow.svg" alt="" class="right_move" width="15px"></div>')
-      // $(".horizontal_line").css({ position: 'absolute', width:"500px",background: 'blue',
-      //     left:"0px", top: e.pageY ,height:"2px"
-      // });
-      // var x = event.pageX - this.offsetLeft;
-      // var y = event.pageY - this.offsetTop;
-      // alert("X Coordinate: " + x + " Y Coordinate: " + y);
-      // // top = y + "px";
-      // // left = (x + 20) + "px";
-      // // //console.log(x , y ,top , left )
-      // $(".imageCount").append('<div class="header_crop table_crop hor_gen_ver horizontal_line drawThis horizontal_line"  style="top: '+(top)+'px;left: ' +left+ 'px; width:"300px"><div class="hor_line" style="background:blue;"><img src="images/arrow.svg" alt="" class="left_move" width="15px"><img src="images/arrow.svg" alt="" class="right_move" width="15px"></div></div>')
-      // $(".horizontal_line").draggable({})
-      // $("#info").draggable({})
-
-
-
-      // wrapper = $(this).parent();
-      // parentOffset = wrapper.offset();
-      // lft = e.pageX - parentOffset.left + wrapper.scrollLeft();
-      // let El = $(this)
-      // const element = El;
-      // const infoElement = document.getElementById('info');
-      // infoElement.style.top = element.offsetTop;
-      // infoElement.style.left = element.offsetLeft;
-      // infoElement.style.width = element.offsetWidth;
-      // infoElement.style.height = element.offsetHeight;
-      // infoElement.innerHTML = "hai";
-      // let El = $(this)
-      // for (let i = 0; i < El.length; i++) {
-      //    const element = El[i];
-      //    let a = {
-      //       "color": "blue",
-      //       "height": element.offsetHeight,
-      //       "width": element.offsetWidth,
-      //       "x": element.offsetLeft,
-      //       "top": element.offsetTop,
-      //       "page": ''
-      //    }
-      //    drawHorLines(a, 1)
+      // for (var i = 0; i < hors.length; i++) {
+         drawHorLines(hors, dblclick_count)
       // }
+      dblclick_count++
 
 
 
 
+       
    })
 
    $("body").on("click", ".proceed", function (event) {
