@@ -388,12 +388,14 @@ $(document).ready(function () {
          new_attr = hors[i].attributes.style.value.split(';');
          for (var j = 0; j < new_attr.length; j++) {
             var entry = new_attr[j].split(':');
-            result[entry.splice(0, 1)[0]] = entry.join(':');
+            let k = $.trim(entry[0])
+            let v = $.trim(entry[1]).replace(/px/g,"")
+            if (k.length > 0 && v.length > 0)
+            {
+            result[k] = v
+            }
          }
-         let obj = {
-            "coordinates": result,
-         }
-         lines_return.push(obj)
+          lines_return.push(result)
       }
       let name = $(".template_name_val").val();
       $(".gp_sub").show()
@@ -433,7 +435,12 @@ $(document).ready(function () {
 
             // $('.small_img'+getindex+' .stored_blob_elements'+cal_j+'').css("background-image", 'url("'+store_blobs[cal_j]+'")')
          }
+         let line0_top = $('.showpdf'+ getindex+' .horizontal_line0')[0].style.top
+         let con_top = parseInt(line0_top)
          $(".small_img"+getindex).css("height", top)
+         $(".small_img"+getindex).css(" background-image", "linear-gradient(cyan, cyan)")
+         $(".small_img"+getindex).css("background-position-y", -con_top)
+         $(".small_img"+getindex).css('background-size', width)
          $('.small_img'+getindex+' .stored_blob_elements').css("width", width)
          // $('.small_img'+getindex+' .stored_blob_elements').css('background-size', width)
          // $('.small_img'+getindex+' .stored_blob_elements').css("height", image_height)
@@ -463,7 +470,7 @@ $(document).ready(function () {
          loading(false)
       msg = JSON.parse(msg)
       if (msg.flag) {
-         // $(".horizontal_line").remove()
+         $(".horizontal_line").remove()
          $(".template_name_val").val("");
          let grouped_dropdown = msg.data
          storedInfo = msg.data
@@ -531,7 +538,7 @@ $(document).ready(function () {
          for (let i = 0; i < group_info.length; i++) {
             if (group_info[i].SplittedScreenName == sel) {
                let height = group_info[i].Height
-               let width = group_info[i].coordinates[1][" width"]
+               let width = group_info[i].coordinates[0][1]["width"]
                let blob = group_info[i].blob
                $(".small_img").html('')
                $(".small_img").css('background-size', width)
@@ -540,7 +547,7 @@ $(document).ready(function () {
                $(".small_img").css("background-image", 'url("' + blob + '")')
                $(".small_img").css("background-size", width)
                $(".small_img").css("background-position-x", 0)
-               let line0_top = group_info[i].coordinates[0].top
+               let line0_top = group_info[i].coordinates[0][0].top
                let con_top = parseInt(line0_top)
                $(".small_img").css("background-position-y", -con_top)
                $(".small_img").append(' <img src="images/arrow-right.png"  class="open_panel" />')
