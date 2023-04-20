@@ -155,7 +155,6 @@ $(document).ready(function () {
       $.each($('.tabs li a'), function (count, item) {
          // Set on click handler
          $(".tabs li a").on('click', function () {
-          
             // Hide all div content
             container.find('div').removeClass('active');
             var current = $(this).attr('href');
@@ -198,12 +197,12 @@ $(document).ready(function () {
    })
 
    //pdf to image
-   function previewPdfFile(file, index) {
+   function previewPdfFile(file, index ,fileViewType) {
       console.log("previewPdfFile called")
       loadXHR(file, index).then(function (blob) {
          var reader = new FileReader();
          reader.onload = function (e) {
-            pdftoimg(e.target.result, index)
+            pdftoimg(e.target.result, index ,fileViewType)
          }
          reader.readAsDataURL(blob);
       });
@@ -240,7 +239,7 @@ $(document).ready(function () {
       });
    }
 
-   function pdftoimg(file, index) {
+   function pdftoimg(file, index ,fileViewType) {
       console.log("pdftoimg called")
       imagesArr = [];
       window.PDFJS = window.pdfjsLib;
@@ -272,7 +271,7 @@ $(document).ready(function () {
                imagesArr.push(pages)
                if (pageN == pdf.numPages) {
                   //console.log(imagesArr)
-                  displayImage(imagesArr, index)
+                  displayImage(imagesArr, index ,fileViewType)
                   console.log("images" ,imagesArr)
                }
             }
@@ -284,17 +283,30 @@ $(document).ready(function () {
       });
    }
 
-   function displayImage(imagefiles, index) {
+   function displayImage(imagefiles, index ,fileViewType) {
 
       console.log(imagefiles, index ,"displyaImage")
-      img__ = ''
-      imagefiles_ = imagefiles;
-      for (var i = 0; i < imagefiles.length; i++) {
-         img__ += '<img src="' + imagefiles[i] + '" id="imageCountNum' + i + '" class="imageCount imageCountNum' + i + '" alt="' + i + '"  width="100%"> <div id="info"></div></div> ';
+      if(fileViewType == "smallFile"){
+         img__ = ''
+         imagefiles_ = imagefiles;
+         for (var i = 0; i < imagefiles.length; i++) {
+            img__ += '<img src="' + imagefiles[i] + '"   width="100%"></div> ';
+         }
+         $(".small_img" + index).empty()
+         $(".small_img" + index).html(img__)
       }
-      $(".showpdf" + index).empty()
-      $(".showpdf" + index).html(img__)
+      else{
+         img__ = ''
+         imagefiles_ = imagefiles;
+         for (var i = 0; i < imagefiles.length; i++) {
+            img__ += '<img src="' + imagefiles[i] + '" id="imageCountNum' + i + '" class="imageCount imageCountNum' + i + '" alt="' + i + '"  width="100%"> <div id="info"></div></div> ';
+         }
+         $(".showpdf" + index).empty()
+         $(".showpdf" + index).html(img__)
+   
+      }
    }
+
 
 
 
@@ -342,10 +354,8 @@ $(document).ready(function () {
 
 
    function drawHorLines(points, i) {
-      //console.log(points)
       delll = ''
       $(".showpdf").append('<div class="header_crop table_crop hor_gen_ver horizontal_line drawThis horizontal_line' + i + '" color="' + points.color + '" page="' + points.page + '" id="' + i + '" style="top: ' + (points.top) + 'px;left: ' + points.x + 'px; height: ' + (points.height + 14) + 'px; width: ' + points.width + 'px;"><div class="hor_line" style="background: ' + points.color + '">' + delll + '<span class="span_text">'+points.text+'</span> </div></div>');
-      // $(".delete_line").hide();
       $(".horizontal_line").draggable({});
       return '';
    }
@@ -374,9 +384,7 @@ $(document).ready(function () {
    })
 
    let storedInfo
-
    $("body").on("click", ".saveBtn", function () {
-
       loading(true);
       lines_return = []
       $(".template_name_modal").hide();
@@ -394,59 +402,13 @@ $(document).ready(function () {
             {
             result[k] = v
             }
+            result['page'] = parseInt(hors[i].attributes.page.value);
          }
           lines_return.push(result)
       }
       let name = $(".template_name_val").val();
       $(".gp_sub").show()
       $(".small_img").html('')
-      let getindex= $(".tabs li a.active").attr("index")
-
-      //single page
-      var img =  $('.showpdf'+ getindex+' img')
-      if(img.length == 1){
-      var width = img[0].clientWidth;
-      let url = $('.showpdf'+ getindex+' img').attr('src')
-      let top = $('.showpdf'+ getindex+' .horizontal_line1').offset().top - $('.showpdf'+ getindex+' .horizontal_line0').offset().top
-      console.log($('.showpdf'+ getindex+' .horizontal_line1').offset().top, $('.showpdf'+ getindex+' .horizontal_line0').offset().top)
-      $(".small_img").css("height", top)
-      $(".small_img").css("width", width)
-      $(".small_img").css("background-image", 'url("' + url + '")')
-      $(".small_img").css('background-size', width)
-      let line0_top = $('.showpdf'+ getindex+' .horizontal_line0')[0].style.top
-      let con_top = parseInt(line0_top)
-      $(".small_img").css("background-position-y", -con_top)
-      }
-      else{
-         var width = img[0].clientWidth;
-         let url = $('.showpdf'+ getindex+' img').attr('src')
-         let top = $('.showpdf'+ getindex+' .horizontal_line1').offset().top - $('.showpdf'+ getindex+' .horizontal_line0').offset().top
-         let cal_no_images = $('.showpdf'+ getindex+' img')
-         let store_blobs = []
-         for (let cal_i = 0; cal_i < cal_no_images.length; cal_i++) {
-            let url = $('.showpdf'+ getindex+' #imageCountNum'+cal_i+'').attr('src')
-            store_blobs.push(url)
-         }
-         for (let cal_j = 0; cal_j < store_blobs.length; cal_j++) {
-            let a = ''
-            a+='<img src='+store_blobs[cal_j]+'  class="stored_blob_elements stored_blob_elements'+cal_j+'">'
-            $(".small_img"+getindex).append(a)
-            
-
-            // $('.small_img'+getindex+' .stored_blob_elements'+cal_j+'').css("background-image", 'url("'+store_blobs[cal_j]+'")')
-         }
-         let line0_top = $('.showpdf'+ getindex+' .horizontal_line0')[0].style.top
-         let con_top = parseInt(line0_top)
-         $(".small_img"+getindex).css("height", top)
-         $(".small_img"+getindex).css(" background-image", "linear-gradient(cyan, cyan)")
-         $(".small_img"+getindex).css("background-position-y", -con_top)
-         $(".small_img"+getindex).css('background-size', width)
-         $('.small_img'+getindex+' .stored_blob_elements').css("width", width)
-         // $('.small_img'+getindex+' .stored_blob_elements').css('background-size', width)
-         // $('.small_img'+getindex+' .stored_blob_elements').css("height", image_height)
-         // $('.small_img'+getindex+' .stored_blob_elements').css("width", width)
-         // $('.small_img'+getindex+' .stored_blob_elements').css("background-size", width)
-      }
       $(".small_img").append(' <img src="images/arrow-right.png"  class="open_panel" />')
       sendObj = {}
       sendObj.FileName = file_id;
@@ -454,8 +416,6 @@ $(document).ready(function () {
       sendObj.tenant_id = tenant_id;
       sendObj.templateName = name;
       sendObj.coordinates = lines_return
-      sendObj.Height = $('.showpdf'+ getindex+' .horizontal_line1').offset().top - $('.showpdf'+ getindex+' .horizontal_line0').offset().top
-      sendObj.Blob = $(".imageCount").attr('src')
       settings11 = {
          "async": true,
          "crossDomain": true,
@@ -467,7 +427,7 @@ $(document).ready(function () {
       };
 
       $.ajax(settings11).done(function (msg) {
-         loading(false)
+      loading(false)
       msg = JSON.parse(msg)
       if (msg.flag) {
          $(".horizontal_line").remove()
@@ -487,6 +447,9 @@ $(document).ready(function () {
 
                      sel = 'selected'
                   }
+                  let split_file =  grouped_dropdown[i][key][j].SplittedFile
+                  let split_file_path =  grouped_dropdown[i][key][j].SplittedFilePath
+                  previewPdfFile(SplittedFile ,"" , "smallFile")
                   storeCoords = grouped_dropdown[i][key][j].SplittedScreenName
                   gd += '<option ' + sel + '  value = ' + grouped_dropdown[i][key][j].SplittedScreenName + '>' + grouped_dropdown[i][key][j].SplittedScreenName + '</option>'
                }
@@ -531,38 +494,24 @@ $(document).ready(function () {
       };
 
       $.ajax(settings11).done(function (msg) {
-      loading(false);
-
+         loading(false);
          msg = JSON.parse(msg)
-          let group_info = msg.data
+         let group_info = msg.data
          for (let i = 0; i < group_info.length; i++) {
             if (group_info[i].SplittedScreenName == sel) {
-               let height = group_info[i].Height
-               let width = group_info[i].coordinates[0][1]["width"]
-               let blob = group_info[i].blob
                $(".small_img").html('')
-               $(".small_img").css('background-size', width)
-               $(".small_img").css("height", height)
-               $(".small_img").css("width", width)
-               $(".small_img").css("background-image", 'url("' + blob + '")')
-               $(".small_img").css("background-size", width)
-               $(".small_img").css("background-position-x", 0)
-               let line0_top = group_info[i].coordinates[0][0].top
-               let con_top = parseInt(line0_top)
-               $(".small_img").css("background-position-y", -con_top)
                $(".small_img").append(' <img src="images/arrow-right.png"  class="open_panel" />')
                updateProps(group_info[i].properties)
                let text = ["begin" ,"end"]
                $(".horizontal_line").remove()
                for (var ii = 0; ii < group_info[i].coordinates.length; ii++) {
                   let obj = {}
-                  obj["height"] = group_info[i].coordinates[ii][" height"]
-                  obj["width"] = group_info[i].coordinates[ii][" width"]
+                  obj["height"] = group_info[i].coordinates[ii]["height"]
+                  obj["width"] = group_info[i].coordinates[ii]["width"]
                   obj["top"] = group_info[i].coordinates[ii]["top"]
                   delll = ''
                   $(".showpdf").append('<div class="header_crop table_crop hor_gen_ver horizontal_line drawThis horizontal_line' + ii + '" color="blue" id="' + ii + '" style="top: ' + group_info[i].coordinates[ii]["top"] + '; height:'+group_info[i].coordinates[ii][" height"]+'; width: '+group_info[i].coordinates[ii][" width"]+'"><div class="hor_line" style="background:blue">' + delll + '<span class="span_text">'+text[ii]+'</span> </div></div>');
-                  // $(".delete_line").hide();
-                  $(".horizontal_line").draggable({});
+                  // $(".horizontal_line").draggable({});
                }
             }
          }
@@ -670,11 +619,12 @@ $(document).ready(function () {
       let img =  $('.showpdf'+index_1+' #'+event.target.id+'')
       // var img = parent_class.document.getElementById(event.target.id);
       let images_displayed_count = $('.showpdf'+index_1+' img').length
+      let parsed_count = parseInt(event.currentTarget.alt)
       if(images_displayed_count == 1){
+         
          caltop = event.offsetY
       }
       else{
-         let parsed_count = parseInt(event.currentTarget.alt)
          if(parsed_count > 0){
             for (let i = 0; i <= parsed_count; i++) {
                  caltop += $('.showpdf'+index_1+' img')[i].offsetTop
@@ -701,40 +651,20 @@ $(document).ready(function () {
       let hors = {
          "color": "blue",
          "height": 15,
-         "page": 0,
+         "page": parsed_count,
          "width": width,
          "x": x,
          "top": caltop,
          "text":text[dblclick_count]
       }
-      // , {
-      //    "color": "blue",
-      //    "height": 15,
-      //    "page": 0,
-      //    "width": width,
-      //    "x": x,
-      //    "top": y + 60,
-      //    "text":"end"
-
-
-      // }]
+      
       $(".save_screen").show()
-
-      // for (var i = 0; i < hors.length; i++) {
-         drawHorLines(hors, dblclick_count)
-      // }
+      drawHorLines(hors, dblclick_count)
       dblclick_count++
-
-
-
-
-       
    })
 
    $("body").on("click", ".proceed", function (event) {
-
       $(this).attr("href", proceedUrl)
-
    })
 
 
