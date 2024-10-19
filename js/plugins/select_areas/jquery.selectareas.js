@@ -1,7 +1,19 @@
 var clicked_id
 var colors_ = ['#ecf0f1', '#e67e22', '#81ecec', '#b2bec3', '#f9ca24', '#ff7979', '#4cd137', '#e84118', '#00a8ff', '#9c88ff', '#ffffff', '#78e08f', '#079992', '#DCDCDC', '#00CED1', '#00FFFF', '#1E90FF', '#7B68EE', '#9370DB', '#FFEFD5', '#F0E68C', '#FF69B4', '#FFC0CB', '#ADD8E6', '#FF8C00', '#008B8B', '#E6E6FA', '#FFF0F5', '#FFFFF0', '#F0FFFF', '#FFFAFA'];
 // (function($) {
+
+
 $.imageArea = function (parent, id) {
+    var dropdown_val = ''
+    if(parent.areas().length > 0){
+      if(parent.areas()[id])
+      {
+        dropdown_val = parent.areas()[id]["dropdown_value"] ?parent.areas()[id]["dropdown_value"] : ''
+      }
+      else{
+     
+      }
+    }
     var options = parent.options,
         $image = parent.$image,
         $trigger = parent.$trigger,
@@ -25,7 +37,8 @@ $.imageArea = function (parent, id) {
             height: 10,
             width: 10,
             type: 'value',
-            page: $image[0].alt
+            page: $image[0].alt,
+            dropdown_value :dropdown_val
         },
         blur = function () {
             area.z = 0;
@@ -116,6 +129,19 @@ $.imageArea = function (parent, id) {
                 //     area.type = 'keyword'
                 // }
                 tx = area.type == 'value' ? 'v' : 'k';
+
+               // if(area.type == "value"){
+               //     tx = 'v'
+               // }
+                //else{
+                    //if(area.dropdown_value  == "context"){
+                     // tx = 'c'
+                    //}
+                    //else{
+                     //   tx = 'k'
+                   // }
+               // }
+
                 // $(".select-count"+area.id).html(tx);
                 $(".select-count" + area.id).css({
                     "left": (area.x - 15) + "px ",
@@ -610,7 +636,13 @@ $.imageArea = function (parent, id) {
             numb += '<div class="v_class numb_key numb_key'+area.id+'">V</div>'
         }
         else{
-            numb += '<div class="k_class numb_key numb_key'+area.id+'">K</div>'
+            if(area.dropdown_value  == "context"){
+              numb += '<div class="c_class numb_key numb_key'+area.id+'">C</div>'
+            }
+            else{
+              numb += '<div class="k_class numb_key numb_key'+area.id+'">K</div>'
+            }
+            //numb += '<div class="k_class numb_key numb_key'+area.id+'">K</div>'
         }
             
 

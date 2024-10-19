@@ -1,277 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title></title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" id="bt-theme">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/plugins/select_areas/jquery.selectareas.css">
-        <link rel="stylesheet" href="css/plugins/materialize/materialize.css">
-        <link rel="stylesheet" href="css/plugins/materialize/mstepper.css">
-        <link rel="stylesheet" href="css/plugins/toastr/toastr.css">
-        <link rel="stylesheet" href="css/helper.css">
-        <link rel="stylesheet" href="css/dinpro.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/colors.css">
-        <link rel="stylesheet" href="css/confirm.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/plugins/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" id="bt-theme">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/plugins/select_areas/jquery.selectareas.css">
+    <link rel="stylesheet" href="css/plugins/materialize/materialize.css">
+    <link rel="stylesheet" href="css/plugins/materialize/mstepper.css">
+    <link rel="stylesheet" href="css/plugins/toastr/toastr.css">
+    <link rel="stylesheet" href="css/helper.css">
+    <link rel="stylesheet" href="css/dinpro.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/confirm.css">
 
 
-        <!-- rule builder links starts -->
-        <link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.css">
+    <!-- rule builder links starts -->
+    <!-- <link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.css">
         <link rel="stylesheet" href="node_modules/chosenjs/chosen.css">
         <link rel="stylesheet" href="node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css">
         <link rel="stylesheet" href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.css">
-        <link rel="stylesheet" href="node_modules/selectize/dist/css/selectize.bootstrap3.css">
+        <link rel="stylesheet" href="node_modules/selectize/dist/css/selectize.bootstrap3.css"> -->
 
-        <link rel="stylesheet" href="rule_builder/query-builder.default.css" id="qb-theme">
-
-
-
-        <!-- rule builder links ends -->
-
-    </head>
-
-    <body>
-        <select class="grouped_dropdown gp_sub">
-           
-        </select>
-        <div class="training-layout training-layout-1">
-
-          
+    <link rel="stylesheet" href="rule_builder/query-builder.default.css" id="qb-theme">
 
 
-            <!-- side nav bar -->
-            <div class="tabs">
-                <div class="initial_view">
-                    <div class="existingTemp initialBorder mr-t-20">
-                        <p>Existing Templates</p>
-                        <select class="forceTemp"></select>
-                    </div>
-                    <div class="skipTemp">
 
-                    </div>
-                    <div class="newTemplate initialBorder">
-                        <button class="waves-effect waves-dark createNewTemplate">Create New</button>
-                    </div>
+    <!-- rule builder links ends -->
+
+</head>
+
+<body>
+
+
+    <div class="training-layout training-layout-1">
+
+
+
+
+        <!-- side nav bar -->
+        <div class="tabs">
+
+            <div class="initial_view">
+
+                <div class="existingTemp initialBorder mr-t-20">
+                    <p>Existing Templates</p>
+                    <select class="forceTemp"></select>
                 </div>
-                <div class="secondary_view">
-                    <ul>
-                        <li class="train_tab fields pointer" type="field">
-                            <p class="head">Fields</p>
-                            <div class="allFieldResults hidden">
-                                <input type="text" class="searchFields fnt-13" placeholder="Search Fields">
-                                <div class="displayresults">
-                                    <div class="group_main">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="train_tab di_display pointer" type="di">
-                            <p class="head">Document Identifier</p>
-                        </li>
-                        <li class="train_tab table pointer mr-b-10" type="table">
-                            <p class="head">Table</p>
-                            <div class="allTables hidden">
-                            </div>
-                        </li>
+                <div class="skipTemp">
 
-                        <li class="train_tab keyword pointer" type="keyword">
-                            <p class="head">Keywords</p>
-                        </li>
-                    </ul>
-                    <div>
-                        <div class="show_digital">
-                            <p>Show Digital <span title="All other components will be blocked">?</span></p>
-                        </div>
-                        <div class="save_final pointer forSave text-center" clickedtype="save" type="save_final">
-                            <p class="head">Save</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="close_digi_view">
-                    <p>Close Digital View</p>
+                <div class="newTemplate initialBorder">
+                    <button class="waves-effect waves-dark createNewTemplate">Create New</button>
                 </div>
             </div>
-            <!-- center Image -->
-            <div class="image-box-view">
-                <div class="content-center showImgs">
-                    <div class="image_box">
-                        <div class="HorZOn pos_rl" id="add_lines">
+            <div class="secondary_view">
 
+                <ul>
+                    <li class="train_tab fields pointer" type="field">
+                        <p class="head">Fields</p>
+                        <div class="allFieldResults hidden">
+                            <input type="text" class="searchFields fnt-13" placeholder="Search Fields">
+                            <div class="displayresults">
+                                <div class="group_main">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="train_tab di_display pointer" type="di">
+                        <p class="head">Document Identifier</p>
+                    </li>
+                    <li class="train_tab table pointer mr-b-10" type="table">
+                        <p class="head">Table</p>
+                        <div class="allTables hidden">
+                        </div>
+                    </li>
+
+                    <!-- <li class="train_tab keyword pointer" type="keyword">
+                        <p class="head">Keywords</p>
+                    </li> -->
+                </ul>
+                <div>
+                    <div class="show_digital">
+                        <p>Show Digital <span title="All other components will be blocked">?</span></p>
+                    </div>
+                    <div class="save_final pointer forSave text-center" clickedtype="save" type="save_final">
+                        <p class="head">Save</p>
+                    </div>
+                </div>
+            </div>
+            <div class="close_digi_view">
+                <p>Close Digital View</p>
+            </div>
+        </div>
+        <!-- center Image -->
+        <div class="image-box-view">
+            <div class="dropdown grouped_dropdown gp_sub">
+
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Select a file
+                </button>
+                <ul class="dropdown-menu appendDropdown" aria-labelledby="dropdownMenuButton">
+
+                </ul>
+
+                <select placeholder="Select Template Name" class="template_name_list">
+                    <!-- <option value="one">one</option> -->
+                </select>
+
+                <button type="button" class="go_btn">Go</button>
+
+
+
+            </div>
+            <div class="content-center showImgs">
+                <div class="image_box">
+                    <div class="HorZOn pos_rl" id="add_lines">
+
+                    </div>
+                </div>
+            </div>
+            <div class="showpdf"></div>
+
+            <!-- footer for buttons -->
+            <div class="displayCropWord"></div>
+            <div class="dp_class"></div>
+        </div>
+        <div class="showpage"></div>
+        <div class="details-view">
+            <div class="footer-box">
+                <div class="row btns_for_keys">
+                    <div class="col-sm-11 keywords_display mr-t-10">
+
+                    </div>
+                    <div class="col-sm-1">
+                        <!-- <button class="waves-effect waves-dark next_button  nextToFields mr-t-25">Next</button> -->
+                    </div>
+                </div>
+                <!-- <div class="row btns_for_Di">
+                    <div class="col-sm-11 di_keys_display mr-t-10">
+                        <img src="images/add.svg" alt="" class="add_d_i">
+                        <div class="all_di_groups">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="waves-effect waves-dark next_button nextToTable mr-t-25">Next</button>
+                    </div>
+                </div> -->
+                <div class="row cropped_identifiers_container">
+                    <div class="col-sm-11 di_keys_display mr-t-10">
+                        <div class="cropped-items-container">
+                            <!-- The list of items will be rendered here -->
                         </div>
                     </div>
                 </div>
-                <!-- footer for buttons -->
-                <div class="displayCropWord"></div>
-                <div class="dp_class"></div>
-            </div>
-            <div class="details-view">
-                <div class="footer-box">
-                    <div class="row btns_for_keys">
-                        <div class="col-sm-11 keywords_display mr-t-10">
 
-                        </div>
-                        <div class="col-sm-1">
-                            <!-- <button class="waves-effect waves-dark next_button  nextToFields mr-t-25">Next</button> -->
+                <div class="row btns_for_fields">
+                    <div class="col-sm-6 field_val_display mr-t-10">
+
+                    </div>
+                    <div class="col-sm-2 display_units mr-t-10">
+                        <div class="">
+
+
                         </div>
                     </div>
-                    <div class="row btns_for_Di">
-                        <div class="col-sm-11 di_keys_display mr-t-10">
-                            <img src="images/add.svg" alt="" class="add_d_i">
-                            <div class="all_di_groups">
-
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
-                            <button class="waves-effect waves-dark next_button nextToTable mr-t-25">Next</button>
-                        </div>
+                    <div class="col-sm-4 mr-t-30">
+                        <!-- Save -->
+                        <button class="waves-effect waves-dark next_button nextToDi ">Next</button>
+                        <!-- <button class="waves-effect waves-dark next_button fieldSaveBtn">Save</button> -->
+                        <button class="waves-effect waves-dark next_button testBtn">Test</button>
                     </div>
-                    <div class="row btns_for_fields">
-                        <div class="col-sm-6 field_val_display mr-t-10">
+                </div>
+                <div class="row btns_for_test">
+                    <div class="col-sm-9 field_test_results mr-t-10">
 
-                        </div>
-                        <div class="col-sm-2 display_units mr-t-10">
-                            <div class="">
-
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4 mr-t-30">
-                            <!-- Save -->
-                            <button class="waves-effect waves-dark next_button nextToDi ">Next</button>
-                            <!-- <button class="waves-effect waves-dark next_button fieldSaveBtn">Save</button> -->
-                            <button class="waves-effect waves-dark next_button testBtn">Test</button>
-                        </div>
                     </div>
-                    <div class="row btns_for_test">
-                        <div class="col-sm-9 field_test_results mr-t-10">
-
-                        </div>
-                        <div class="col-sm-3 mr-t-30 textConfirm text-center">
-                            <!-- Save -->
-                            <button class="waves-effect waves-dark next_button testConfirmBtn"
-                                style="background: #4AABFF;">Confirm</button>
-                            <button class="waves-effect waves-dark next_button closeTestView">Cancel</button>
-                        </div>
+                    <div class="col-sm-3 mr-t-30 textConfirm text-center">
+                        <!-- Save -->
+                        <button class="waves-effect waves-dark next_button testConfirmBtn"
+                            style="background: #4AABFF;">Confirm</button>
+                        <button class="waves-effect waves-dark next_button closeTestView">Cancel</button>
                     </div>
-                    <div class="row btns_for_table">
-                        <div class="btns_for_table">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="pos_rl forTableScroll">
+                </div>
+                <div class="row btns_for_table">
+                    <div class="btns_for_table">
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="pos_rl forTableScroll">
 
-                                    </div>
                                 </div>
-                                <div class="col-sm-1 mr-t-20">
-                                    <button class="waves-effect waves-dark next_button nextToKeywords"
-                                        style="background: #4aabff">Next</button>
-                                    <!-- <button class="waves-effect waves-dark next_button checkForce forSave" clickedtype="save"
+                            </div>
+                            <div class="col-sm-1 mr-t-20">
+                                <button class="waves-effect waves-dark next_button nextToKeywords"
+                                    style="background: #4aabff">Next</button>
+                                <!-- <button class="waves-effect waves-dark next_button checkForce forSave" clickedtype="save"
                                 onclick="return false;">Save</button> -->
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="digital-view">
-                <div class="content-center show_digi_imgs">
-                    <div class="buttons">
-                        <p class="text_label">Showing page <span class="digi_current_page"></span> of <span
-                                class="digi_total_pages"></span></p>
-                        <div class="buttons_section">
-                            <button class="digi_back">Prev</button>
-                            <button class="digi_next">Next</button>
-                        </div>
-                    </div>
-                    <div class="imgs_here">
-
+        <div class="digital-view">
+            <div class="content-center show_digi_imgs">
+                <div class="buttons">
+                    <p class="text_label">Showing page <span class="digi_current_page"></span> of <span
+                            class="digi_total_pages"></span></p>
+                    <div class="buttons_section">
+                        <button class="digi_back">Prev</button>
+                        <button class="digi_next">Next</button>
                     </div>
                 </div>
-            </div>
-            <div class="mapping-view">
-                <div class="content-center show_digi_imgs">
-                    <div class="buttons">
-                        <div class="buttons_section">
-                            <button class="mapping_close">Close</button>
-                            <button class="mapping_back">Prev</button>
-                            <button class="mapping_next">Next</button>
-                        </div>
-                    </div>
-                    <div class="imgs_here mapping_imags_here">
+                <div class="imgs_here">
 
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="template_name_modal">
-            <div class="template_content">
-                <div class="header">
-                    <h4>Template Name</h4>
+        <div class="mapping-view">
+            <div class="content-center show_digi_imgs">
+                <div class="buttons">
+                    <div class="buttons_section">
+                        <button class="mapping_close">Close</button>
+                        <button class="mapping_back">Prev</button>
+                        <button class="mapping_next">Next</button>
+                    </div>
                 </div>
-                <div class="content">
-                    <input type="text" class="template_name_val" list="templates_list"
-                        placeholder="Enter Template Name">
-                    <datalist id="templates_list">
+                <div class="imgs_here mapping_imags_here">
 
-                    </datalist>
-                </div>
-                <div class="footer">
-                    <button type="button" class="waves-effect waves-dark btn closeTempModal">Cancel</button>
-                    <button type="button" class="waves-effect waves-dark btn green saveBtn">Confirm</button>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="template_name_modal">
+        <div class="template_content">
+            <div class="header">
+                <h4>Template Name</h4>
+            </div>
+            <div class="content">
+                <input type="text" class="template_name_val" list="templates_list" placeholder="Enter Template Name">
+                <datalist id="templates_list">
 
-        <div class="attribute_name_modal">
-            <div class="attribute_content">
-                <div class="header">
-                    <h4>Attributes</h4>
-                    <button class="closeAttrBtn"><img src="images/close.svg" alt="" style="width: 20px;"></button>
-                </div>
-                <div class="content">
-                    <div>
-                        <button class="btn btn-xs btn-default selectAttrType" data-type="simple">Simple</button>
-                        <button class="btn btn-xs btn-default selectAttrType" data-type="complex">Complex</button>
-                    </div>
-                    <div class="selectedContent">
-
-                    </div>
-                </div>
-                <div class="footer pd-t-10">
-                    <div class="btn-group flt-l mr-l-5">
-                        <button class="btn btn-danger reset">Reset</button>
-                        <button class="btn btn-primary add_else">Add Else</button>
-                    </div>
-                    <button type="button" class="waves-effect waves-dark btn green saveAttrBtn">Save</button>
-                </div>
+                </datalist>
+            </div>
+            <div class="footer">
+                <button type="button" class="waves-effect waves-dark btn closeTempModal">Cancel</button>
+                <button type="button" class="waves-effect waves-dark btn green saveBtn">Confirm</button>
             </div>
         </div>
-        <!-- All script tags -->
-        <script src="js/plugins/jquery/jquery.min.js" charset="utf-8"></script>
-        <script src="js/plugins/jquery/jquery-ui.min.js" charset="utf-8"></script>
-        <script src="js/plugins/jquery/moment.min.js" charset="utf-8"></script>
-        <!-- <script src="js/plugins/bootstrap/bootstrap.min.js" charset="utf-8"></script> -->
-        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="js/plugins/materialize/materialize.js" charset="utf-8"></script>
-        <script src="js/plugins/materialize/mstepper.js" charset="utf-8"></script>
-        <script src="js/plugins/pdf/pdf.min.js" charset="utf-8"></script>
-        <script src="js/plugins/tiff/tiff.min.js" charset="utf-8"></script>
-        <script src="js/plugins/select_areas/jquery.selectareas.js" charset="utf-8"></script>
-        <script src="js/common.js" charset="utf-8"></script>
-        <script src="js/plugins/toastr/toastr.min.js" charset="utf-8"></script>
-        <script src="js/json.js"></script>
+    </div>
 
-        <script src="js/confirm.js"></script>
-        <script src="js/linejs/line.js"></script>
+    <div class="attribute_name_modal">
+        <div class="attribute_content">
+            <div class="header">
+                <h4>Attributes</h4>
+                <button class="closeAttrBtn"><img src="images/close.svg" alt="" style="width: 20px;"></button>
+            </div>
+            <div class="content">
+                <div>
+                    <button class="btn btn-xs btn-default selectAttrType" data-type="simple">Simple</button>
+                    <button class="btn btn-xs btn-default selectAttrType" data-type="complex">Complex</button>
+                </div>
+                <div class="selectedContent">
 
-        <!-- rule builder links starts -->
+                </div>
+            </div>
+            <div class="footer pd-t-10">
+                <div class="btn-group flt-l mr-l-5">
+                    <button class="btn btn-danger reset">Reset</button>
+                    <button class="btn btn-primary add_else">Add Else</button>
+                </div>
+                <button type="button" class="waves-effect waves-dark btn green saveAttrBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    <!-- All script tags -->
+    <script src="js/plugins/jquery/jquery.min.js" charset="utf-8"></script>
+    <script src="js/plugins/jquery/jquery-ui.min.js" charset="utf-8"></script>
+    <script src="js/plugins/jquery/moment.min.js" charset="utf-8"></script>
+    <!-- <script src="js/plugins/bootstrap/bootstrap.min.js" charset="utf-8"></script> -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/plugins/materialize/materialize.js" charset="utf-8"></script>
+    <script src="js/plugins/materialize/mstepper.js" charset="utf-8"></script>
+    <script src="js/plugins/pdf/pdf.min.js" charset="utf-8"></script>
+    <script src="js/plugins/tiff/tiff.min.js" charset="utf-8"></script>
+    <script src="js/plugins/select_areas/jquery.selectareas.js" charset="utf-8"></script>
+    <script src="js/common.js" charset="utf-8"></script>
+    <script src="js/plugins/toastr/toastr.min.js" charset="utf-8"></script>
+    <script src="js/json.js"></script>
 
-        <script src="node_modules/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="js/confirm.js"></script>
+    <script src="js/linejs/line.js"></script>
+
+    <!-- rule builder links starts -->
+
+    <!-- <script src="node_modules/bootstrap-select/dist/js/bootstrap-select.js"></script>
         <script src="node_modules/chosenjs/chosen.jquery.js"></script>
         <script src="node_modules/bootbox/bootbox.js"></script>
         <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.js"></script>
@@ -279,103 +310,142 @@
         <script src="node_modules/jquery-extendext/jquery-extendext.js"></script>
         <script src="node_modules/sql-parser-mistic/browser/sql-parser.js"></script>
         <script src="node_modules/dot/doT.js"></script>
-        <script src="node_modules/interactjs/dist/interact.js"></script>
+        <script src="node_modules/interactjs/dist/interact.js"></script> -->
 
-        <script src="rule_builder/src/main.js"></script>
-        <script src="rule_builder/src/defaults.js"></script>
-        <script src="rule_builder/src/plugins.js"></script>
-        <script src="rule_builder/src/core.js"></script>
-        <script src="rule_builder/src/public.js"></script>
-        <script src="rule_builder/src/data.js"></script>
-        <script src="rule_builder/src/template.js"></script>
-        <script src="rule_builder/src/utils.js"></script>
-        <script src="rule_builder/src/model.js"></script>
-        <script src="rule_builder/src/jquery.js"></script>
-        <script src="rule_builder/src/plugins/bt-checkbox/plugin.js"></script>
-        <script src="rule_builder/src/plugins/bt-selectpicker/plugin.js"></script>
-        <script src="rule_builder/src/plugins/bt-tooltip-errors/plugin.js"></script>
-        <script src="rule_builder/src/plugins/change-filters/plugin.js"></script>
-        <script src="rule_builder/src/plugins/chosen-selectpicker/plugin.js"></script>
-        <script src="rule_builder/src/plugins/filter-description/plugin.js"></script>
-        <script src="rule_builder/src/plugins/invert/plugin.js"></script>
-        <script src="rule_builder/src/plugins/mongodb-support/plugin.js"></script>
-        <script src="rule_builder/src/plugins/not-group/plugin.js"></script>
-        <script src="rule_builder/src/plugins/sortable/plugin.js"></script>
-        <script src="rule_builder/src/plugins/sql-support/plugin.js"></script>
-        <script src="rule_builder/src/plugins/unique-filter/plugin.js"></script>
-        <script src="rule_builder/query-builder.en.js"></script>
+    <script src="rule_builder/src/main.js"></script>
+    <script src="rule_builder/src/defaults.js"></script>
+    <script src="rule_builder/src/plugins.js"></script>
+    <script src="rule_builder/src/core.js"></script>
+    <script src="rule_builder/src/public.js"></script>
+    <script src="rule_builder/src/data.js"></script>
+    <script src="rule_builder/src/template.js"></script>
+    <script src="rule_builder/src/utils.js"></script>
+    <script src="rule_builder/src/model.js"></script>
+    <script src="rule_builder/src/jquery.js"></script>
+    <script src="rule_builder/src/plugins/bt-checkbox/plugin.js"></script>
+    <script src="rule_builder/src/plugins/bt-selectpicker/plugin.js"></script>
+    <script src="rule_builder/src/plugins/bt-tooltip-errors/plugin.js"></script>
+    <script src="rule_builder/src/plugins/change-filters/plugin.js"></script>
+    <script src="rule_builder/src/plugins/chosen-selectpicker/plugin.js"></script>
+    <script src="rule_builder/src/plugins/filter-description/plugin.js"></script>
+    <script src="rule_builder/src/plugins/invert/plugin.js"></script>
+    <script src="rule_builder/src/plugins/mongodb-support/plugin.js"></script>
+    <script src="rule_builder/src/plugins/not-group/plugin.js"></script>
+    <script src="rule_builder/src/plugins/sortable/plugin.js"></script>
+    <script src="rule_builder/src/plugins/sql-support/plugin.js"></script>
+    <script src="rule_builder/src/plugins/unique-filter/plugin.js"></script>
+    <script src="rule_builder/query-builder.en.js"></script>
 
-        <!-- rule builder links ends -->
+    <!-- rule builder links ends -->
 
-        <script src="js/main.js" charset="utf-8"></script>
+    <script src="js/main.js" charset="utf-8"></script>
 
-        <div class="loadmask">
-            <div class="loadmask-msg">
-                <!-- <div class="triangleLoading"></div> -->
-                <div class="loadingio-spinner-rolling-hcqarkd3syn">
-                    <div class="ldio-m3t65y1yv8">
-                        <div></div>
-                    </div>
+    <div class="loadmask">
+        <div class="loadmask-msg">
+            <!-- <div class="triangleLoading"></div> -->
+            <div class="loadingio-spinner-rolling-hcqarkd3syn">
+                <div class="ldio-m3t65y1yv8">
+                    <div></div>
                 </div>
-
             </div>
+
         </div>
-    </body>
+    </div>
+</body>
 
-    <style type="text/css">
-        .loadmask .loadmask-msg {
-            top: 26% !important
+<style type="text/css">
+    .loadmask .loadmask-msg {
+        top: 26% !important
+    }
+
+    @keyframes ldio-m3t65y1yv8 {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
         }
 
-        @keyframes ldio-m3t65y1yv8 {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
         }
+    }
 
-        .ldio-m3t65y1yv8 div {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border: 5px solid #4AABFF;
-            border-top-color: transparent;
-            border-radius: 50%;
-        }
+    .ldio-m3t65y1yv8 div {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border: 5px solid #4AABFF;
+        border-top-color: transparent;
+        border-radius: 50%;
+    }
 
-        .ldio-m3t65y1yv8 div {
-            animation: ldio-m3t65y1yv8 1s linear infinite;
-            top: 100px;
-            left: 100px
-        }
+    .ldio-m3t65y1yv8 div {
+        animation: ldio-m3t65y1yv8 1s linear infinite;
+        top: 100px;
+        left: 100px
+    }
 
-        .loadingio-spinner-rolling-hcqarkd3syn {
-            width: 200px;
-            height: 200px;
-            display: inline-block;
-            overflow: hidden;
-            background: transparent;
-        }
+    .loadingio-spinner-rolling-hcqarkd3syn {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        overflow: hidden;
+        background: transparent;
+    }
 
-        .ldio-m3t65y1yv8 {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform: translateZ(0) scale(1);
-            backface-visibility: hidden;
-            transform-origin: 0 0;
-            /* see note above */
-        }
+    .ldio-m3t65y1yv8 {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: translateZ(0) scale(1);
+        backface-visibility: hidden;
+        transform-origin: 0 0;
+        /* see note above */
+    }
 
-        .ldio-m3t65y1yv8 div {
-            box-sizing: content-box;
-        }
+    .ldio-m3t65y1yv8 div {
+        box-sizing: content-box;
+    }
 
-        /* generated by https://loading.io/ */
-    </style>
-    <!-- #0dc5c1; -->
+    .selected_option {
+        background: #4CAF50 !important;
+        color: #fff;
+    }
+
+
+
+
+    .grouped_dropdown {
+        background: #fff;
+        height: 50px;
+        padding: 10px;
+        box-shadow: 0px 2px 8px #0000002b;
+    }
+
+    .cropped-items-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .cropped-item {
+        display: flex;
+        align-items: center;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+    }
+
+    .remove-btn {
+        margin-left: 10px;
+        cursor: pointer;
+        color: red;
+        font-size: 18px;
+    }
+
+
+
+    /* generated by https://loading.io/ */
+</style>
+<!-- #0dc5c1; -->
 
 </html>

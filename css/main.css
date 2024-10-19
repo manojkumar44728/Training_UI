@@ -342,7 +342,7 @@ ul li p.head {
 }
 
 .field_val_display {
-    height: 10vh;
+    height: 14vh;
     overflow-y: auto;
 }
 
@@ -444,6 +444,21 @@ ul li p.head {
     color: white;
 }
 
+.sub_keywords_display_field.context::after{
+    content: "C";
+    position: absolute;
+    top: 24%;
+    right: -8px;
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    text-align: center;
+    line-height: 16px;
+    background:  #4CAF50;
+    border-radius: 50%;
+    color: white;
+}
+
 .row {
     margin: 0px;
 }
@@ -539,6 +554,17 @@ ul li p.head {
     background: #5b59fb;
     border-radius: 50%;
     color: white;
+}
+.c_class{
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    text-align: center;
+    line-height: 16px;
+    background:  #4CAF50;
+    border-radius: 50%;
+    color: white;
+   
 }
 .loading-main,
 .loading-main1 {
@@ -640,6 +666,10 @@ float: left;
 .tabs .secondary_view ul {
     height: 80%;
     overflow-y: auto;
+   
+}
+.dropdown-menu{
+    min-width: max-content !important;
 }
 
 .tabs ul li p.head {
@@ -651,6 +681,9 @@ float: left;
     height: calc(50vh - 38px);
 }
 
+.image-box-view{
+    /* width: 45% !important; */
+}
 .image-box-view,
 .show_clicked_image {
     width: calc(100% - 15%);
@@ -1253,11 +1286,19 @@ overflow-y: auto; */
     color: #ffffff;
     border: 1px solid transparent;
 }
+.image-box-view{
+    height: 70vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.footer-box{
+    height: 36vh !important;
+    overflow-y: scroll;
+}
 
-
-.doc_iden_training .image-box-view,
+.doc_iden_training,
 .doc_iden_training .details-view {
-    height: 50vh;
+    /* height: 50vh; */
     transition: 1s;
 }
 
@@ -2202,23 +2243,154 @@ input.fire-check:checked~section .tn-box .tn-progress {
 }
 
 .training-layout  {
-    padding: 1rem;
-    padding-left: 2rem;
-    height: 35rem;
-    overflow: auto;
-    padding-top: 4rem;
+    /* padding: 1rem;
+    padding-left: 2rem; */
+    /* height: 42rem;
+    overflow: auto; */
+    /* padding-top: 4rem; */
 }
 
 select.grouped_dropdown{
     display: block;
     width: 200px;
-    margin-left: 15px;
-    height: 39px;
-    position: absolute;
-    top: 12px;
-    left: 2%;
+    margin-left: 6px;
+    margin-top: 5px;
+    height: 39px;    
     border-radius: 5px;
 }
 .icon{
     width: 90px;
   }
+
+.table_name.active{
+    background: #e0e0e0;
+    margin-top: 6px;
+}
+
+
+.page_no_view {
+ position: absolute;
+    /* bottom: 8px; */
+    left: 218px;
+    top: 65px;
+    z-index: 9999;
+    margin: 0px;
+    background: #00000078;
+    padding: 0px 7px;
+    border-radius: 7px;
+    color: white;
+
+}
+
+
+
+.span_text{
+    position: absolute;
+    top: -7px;
+    font-size: 11px;
+    background: red;
+    padding: 2px 3px;
+    border: none;
+    color: #fff;
+    left: -10px;
+    width: 34px;
+    cursor: move;
+  }
+
+  .display_splitted_line{
+    position: absolute;
+    /* cursor: move; */
+    margin-left: 15px;
+    width: 100% !important;
+  }
+
+
+  .splitted_line{
+    height: 2px;
+  }
+
+
+  .image_box {
+    /* height: 26rem */
+  }
+
+
+
+  .dropdown-toggle{
+    background: transparent;
+    border: none;
+    padding: 7px 12px;
+    width: 200px;    
+    border-radius: 4px;
+    border: 2px solid #b1b1b1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  .dropdown-menu li{
+    display: flex;
+    align-items: center;
+  }
+  .dropdown-menu{
+    /* padding-right: 15px;
+    left: -14px !important; */
+    height: auto !important;
+    z-index: 99999;
+  }
+  .trained{
+    width: 16px;
+  }
+
+  .bg_doc{
+    font-weight: bold;
+    font-size: 13px;
+    padding: 3px;
+    margin-bottom: 3px;
+  }
+
+  button:focus{
+   background:transparent
+  }
+
+  .grouped_dropdown{
+    margin-bottom: 10px;
+  }
+
+
+.appendDropdown{
+    height: 300px !important;
+width: 230px;
+    overflow-y: scroll !important;
+    
+  }
+
+
+.gp_sub{
+    position: absolute;
+    top: 10px;
+    right: 23px;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.template_name_list{
+    display: block !important;
+    border: 2px solid #b1b1b1;
+    width: 250px !important;
+}
+
+
+.go_btn{
+    background: #4AABFF;
+    border: none;
+    padding: 5px 15px;
+    height: 30px;
+    border-radius: 3px;
+    color: #fff;
+}
+
